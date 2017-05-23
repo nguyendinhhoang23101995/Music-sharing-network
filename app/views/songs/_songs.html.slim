@@ -1,0 +1,9 @@
+- cache [:songs, @songs] do
+  - if index
+    - if logged_in?
+      - class_name = "modal-en"
+      .ui.green.button.modal-toggle class="#{class_name}" =t('.share_a_song')
+      .ui.modal.song-form
+        i.close.red.icon
+        .content
+          = render 'songs/form', song: current_user.songs.new
