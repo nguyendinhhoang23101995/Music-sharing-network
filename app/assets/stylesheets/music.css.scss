@@ -1,0 +1,101 @@
+html.turbolinks-progress-bar::before {
+    background-color: #FFB8B8 !important;
+    height: 3px !important;
+}
+::selection {
+    background-color: rgba(229, 253, 254, 1);
+}
+.ui.message {
+    box-shadow: none !important;
+}
+body {
+    font-family: arial, sans-serif;
+    overflow-x: hidden;
+}
+.container {
+    padding-top: 35px;
+    padding-right: 14px;
+    & > .grid {
+        padding-top: 50px;
+    }
+}
+#logo {
+    position: static;
+}
+:focus {
+    outline: none;
+}
+.flash {
+    box-shadow: none !important;
+}
+#t-flash {
+    width: 101%;
+    position: absolute;
+    top: -14px;
+    z-index: 9999;
+}
+#canvas-bg {
+    background-color: rgba(91, 189, 114, 0.78);
+    position: fixed;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+}
+#particles {
+    position: fixed;
+}
+#site-status {
+    h3 {
+        margin-top: 0;
+    }
+}
+.ui.form {
+    margin-top: 10px;
+}
+.rotating {
+    animation: rotating 8s linear infinite;
+    -webkit-animation: rotating 8s linear infinite;
+}
+@keyframes rotating {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+@-webkit-keyframes rotating {
+    from {
+        -webkit-transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(360deg);
+    }
+}
+@-moz-keyframes rotating {
+    from {
+        -moz-transform: rotate(0deg);
+    }
+    to {
+        -moz-transform: rotate(360deg);
+    }
+}
+.stop-rotate {
+    animation-play-state: paused;
+    -webkit-animation-play-state: paused;
+}
+.pull-left {
+    float: left;
+}
+.pull-right {
+    float: right;
+}
+.help-inline {
+    margin-top: 8px;
+    margin-right: 10px;
+}
+
+//Chrome
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px rgba(255, 194, 157, 0.5) inset !important;
+}

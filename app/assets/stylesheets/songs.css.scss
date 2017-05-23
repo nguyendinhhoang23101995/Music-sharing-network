@@ -1,0 +1,87 @@
+#main {
+  min-height: 500px;
+  .modal-toggle {
+    width: 35px;
+    line-height: 20px;
+    padding: 10px;
+    position: fixed;
+    left: 130px;
+    top: 100px;
+  }
+  .modal-en {
+    width: auto;
+    left: 40px;
+  }
+}
+.songs-list {
+  width: 100%;
+}
+.song-container {
+  .album-pic {
+    float: left;
+    margin-right: 30px;
+  }
+}
+.song-info {
+  height: 100%;
+}
+.song-content {
+  line-height: 1.6;
+  font-size: 1.1em;
+  color: #6B6B6B;
+  margin-top: 15px;
+}
+.song-footer {
+  width: 100%;
+  padding-right: 5px;
+  margin-top: 30px;
+}
+.musician {
+  float: right;
+}
+.com-count {
+  float: left;
+  line-height: 36px;
+}
+.album-pic {
+  width: 180px;
+  position: relative;
+  .outer-pic {
+    width: 180px;
+    height: 180px;
+    border: 1px solid #A0FF99;
+    img {
+      min-width: 180px;
+      min-height: 180px;
+    }
+    .dimmer {
+      @include border-radius(50%);
+    }
+  }
+}
+.operate {
+  float: right;
+}
+#song-edit {
+  textarea#song_content {
+    min-height: 300px;
+  }
+}
+#infscr-loading {
+  img {
+    display: block;
+    margin: 0 auto;
+  }
+}
+.song-panel {
+  p {
+    margin-top: 30px;
+    color: #00b5ad;
+  }
+}
+.song-tools-divider {
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #ccc;
+
+}

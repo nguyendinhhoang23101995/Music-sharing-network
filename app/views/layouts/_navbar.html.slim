@@ -1,0 +1,13 @@
+- if logged_in?
+  = render 'users/user_panel'
+- else
+  .ui.grid.form.basic.segment
+    #full-button.ui.buttons.sixteen.wide.column
+      = link_to "#{t('users.signup')}", :signup, class: "ui blue inverted button"
+      .or
+      = link_to "#{t('users.login')}", :login, class: "ui purple inverted button"
+  .ui.red.inverted.center.aligned.segment
+    #site-status
+      .ui.divider
+      .site-params
+        p #{t('.total_users')}: #{t('users.show.users_count', count: User.count)}
