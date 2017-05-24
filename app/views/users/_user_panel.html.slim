@@ -1,0 +1,8 @@
+.ui.large.vertical.labeld.menu
+  .ui.header.item.center.teal.label
+    = link_to current_user
+      = image_tag current_user.avatar_url(:large), class: "ui circular image thumb user-avatar run-popup", data: { description: "Check your profile", variation: "large"}
+    i.home.green.icon
+  = link_to :logout, method: :delete, class: "item"
+    i.sign.out.red.icon
+    | Log out

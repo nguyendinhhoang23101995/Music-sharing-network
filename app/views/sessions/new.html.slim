@@ -1,0 +1,15 @@
+.login-form
+  = form_for :session, url: sessions_path, remote: true do |f|
+    .ui.form.basic.segment
+      #login-errors
+      .field
+        = f.text_field :email, placeholder: "Email"
+      .field
+        = f.password_field :password, placeholder: "Password"
+      .field
+        .ui.toggle.checkbox
+          = f.check_box :remember
+          = f.label :remember, "Remember me"
+      = f.submit "Login", class: "ui green fluid button"
+
+.errors-info data-error="Invalid Email or Password" data-inactivation="User is in inactive"
