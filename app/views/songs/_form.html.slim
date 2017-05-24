@@ -3,23 +3,23 @@
     .fields
       span.pull-mid.help-inline Upload Song
       - if action_name == "edit"
-        = f.text_field :file, placeholder: "#{t('activerecord.attributes.song.s_id')}", disabled: "disabled"
+        = f.text_field :file, placeholder: "File", disabled: "disabled"
       - else
         = f.file_field :file, class: "upload-song"
     .field
       span.pull-mid.help-inline Title
-      = f.text_field :title, placeholder: "#{t('.title')}"
+      = f.text_field :title, placeholder: "Name"
     .field
       span.pull-mid.help-inline Singer
-      = f.text_field :singer, placeholder: "#{t('.singer')}"
+      = f.text_field :singer, placeholder: "Singer"
     .field
       span.pull-mid.help-inline Artist
-      = f.text_field :artist, placeholder: "#{t('.artist')}"
+      = f.text_field :artist, placeholder: "Artist"
     .field
       span.pull-mid.help-inline Description
-      = f.text_area :description, placeholder: "#{t('.content')}"
+      = f.text_area :description, placeholder: "Description"
     .field
       span.pull-mid.help-inline Picture
       = f.file_field :pic, class: "upload-pic"
-    = f.submit "#{t('form.submit')}", class: "ui submit button orange right floated", data: {disable_with: "#{t('form.submitting')}"}
+    = f.submit "Submit", class: "ui submit button orange right floated", data: {disable_with: "Submit"}
     span.pull-right.help-inline
