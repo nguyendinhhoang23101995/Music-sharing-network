@@ -3,7 +3,7 @@
     .ui.error.message
       i.close.icon
       .header
-        | The form contains
+        | The form contains:
         = pluralize(object.errors.count, "error")
       ul.list
         - object.errors.full_messages.each do |msg|
