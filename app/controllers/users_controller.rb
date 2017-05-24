@@ -54,18 +54,7 @@ class UsersController < ApplicationController
     end
   end
 
-  def activate
-    if (@user = User.load_from_activation_token(params[:id]))
-      @user.activate!
-      flash[:success] = "User was activated"
-      auto_login(@user)
-    else
-      not_authenticated
-    end
-  end
-
   private
-
   def find_correct_user
     @user = User.find_by_name(params[:id])
     unless current_user?(@user)
@@ -89,7 +78,7 @@ class UsersController < ApplicationController
   def not_login_user
     if logged_in?
       redirect_to root_path
-      flash[:warning] = "#{t('users.has_already_logged_in')}"
+      flash[:warning] = "User has already logged in"
     end
   end
 end
