@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   authenticates_with_sorcery!
+  mount_uploader :avatar, AvatarUploader
   VALID_EMAIL_REGEX =/\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
   validates :email, presence: true,
             format: {with: VALID_EMAIL_REGEX},
@@ -9,7 +10,6 @@ class User < ActiveRecord::Base
             length: {in: 6..16},
             on: :create
 
-  #Find user by name
   def to_param
     name
   end

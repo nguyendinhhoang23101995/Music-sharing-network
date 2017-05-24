@@ -2,7 +2,9 @@
   .ui.header.item.center.teal.label
     = link_to current_user
       = image_tag current_user.avatar_url(:large), class: "ui circular image thumb user-avatar run-popup", data: { description: "Check your profile", variation: "large"}
+  = link_to root_path, class: "item"
     i.home.green.icon
+    | Home
   = link_to :logout, method: :delete, class: "item"
     i.sign.out.red.icon
     | Log out
