@@ -1,9 +1,26 @@
+div
+  hr
+  h2 Sound Information
+  div id="length" Duration:
+  div id="source" Source
+  div id="status" style="color:red;" Status:
+  hr
+  h2 Control Buttons
+  button id="play" Play
+  button id="pause" Pause
+  button id="restart" Restart
+  hr
+  h2 Current Time
+  div id="currentTime" 0
+  hr
+  br
+  h2 Song List
 - cache [:songs, @songs] do
   - if index
     - if logged_in?
-      - class_name = "modal-en"
-      .ui.green.button.modal-toggle class="#{class_name}" Share a song
+      .ui.green.button.modal-toggle class="modal-en" ="Share a song"
       .ui.modal.song-form
         i.close.red.icon
         .content
           = render 'songs/form', song: current_user.songs.new
+  audio id="player"
