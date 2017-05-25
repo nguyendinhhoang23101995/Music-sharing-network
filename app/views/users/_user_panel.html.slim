@@ -5,6 +5,9 @@
   = link_to root_path, class: "item"
     i.home.green.icon
     | Home
+  = link_to edit_user_path(current_user), class: "item"
+    i.settings.blue.icon
+    | My Account
   = link_to :logout, method: :delete, class: "item"
     i.sign.out.red.icon
     | Log out
