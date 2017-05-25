@@ -1,0 +1,21 @@
+$('.ui.form').removeClass('loading')
+$('.ui.form .button').removeClass('disabled')
+<% if @comment.errors.empty? %>
+  if($('.commenter').length > 0){
+      new_comment = "<%= j render 'comment', comment: @comment %>";
+      $('.comments').append(new_comment);
+      animated();
+  }
+  else{
+    $('.comments').html("<%= j render 'comment', comment: @comment %>");
+    animated();
+  }
+<% else %>
+  $('#comment-errors').html("<%= j render 'shared/error_messages', object: @comment %>");
+  $('#error_explanation').addClass('animated shake');
+<% end %>
+
+function animated() {
+  $('#comment-<%= @comment.id %>').addClass('animated bounceIn');
+  $('textarea').val("");
+}

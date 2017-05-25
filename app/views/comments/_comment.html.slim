@@ -1,0 +1,16 @@
+- cache comment do
+  - user= comment.user
+  .comment id="comment-#{comment.id}"
+    = link_to user, class: "avatar commenter" do
+      = image_tag(user.avatar_url(:small))
+    .content
+      = link_to user.name, user, class: "author"
+      .text.comment-content = comment.content
+      .actions
+        - if current_user == user
+          = link_to [@song, comment], method: :delete, remote: true, data: {confirm: "Are you sure"} do
+            i.pink.trash.icon
+        - else
+          span.reply-user
+            a.reply data-name="#{user.name}"
+              i.reply.orange.icon

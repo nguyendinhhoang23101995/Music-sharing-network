@@ -1,8 +1,8 @@
 class Comment < ActiveRecord::Base
   belongs_to :user
   belongs_to :song, counter_cache: true, touch: true
-  has_many :likes, as: :likeable, foreign_key: "likeable_id", dependent: :destroy
-  has_many :notifications, as: 'subject', dependent: :delete_all
+  has_many :likes, as: :likeable, foreign_key: "likeable_id"
+  has_many :notifications, as: 'subject'
   validates :user_id, :song_id, :content, presence: true
   validates :content, length: { maximum: 10000 }
   after_create :get_at_users
