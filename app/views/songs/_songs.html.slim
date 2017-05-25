@@ -1,32 +1,6 @@
-div
-  hr
-  h2 Sound Information
-  div id="length" Duration:
-  div id="source" Source
-  div id="status" style="color:red;" Status:
-  hr
-  h2 Control Buttons
-  button id="play" Play
-  button id="pause" Pause
-  button id="restart" Restart
-  hr
-  h2 Current Time
-  div id="currentTime" 0
-  hr
-  br
-  h2 Song List
-- cache [:songs, @songs] do
-  - if index
-    - if logged_in?
-      .ui.green.button.modal-toggle class="modal-en" ="Share a song"
-      .ui.modal.song-form
-        i.close.red.icon
-        .content
-          = render 'songs/form', song: current_user.songs.new
-  - if @songs
-    #songs data-image="#{asset_path("loading.gif")}"
-    - for song in @songs
-      = render 'song', song: song, index: index
-    #pagination data-loaded="All songs are loaded"
-      = paginate @songs
-  audio id="player"
+- if @songs
+  #songs data-image="#{asset_path("loading.gif")}"
+  - for song in @songs
+    = render 'song', song: song, index: index
+  #pagination data-loaded="All songs are loaded"
+    = paginate @songs
