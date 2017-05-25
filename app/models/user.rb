@@ -1,7 +1,8 @@
 class User < ActiveRecord::Base
   authenticates_with_sorcery!
   mount_uploader :avatar, AvatarUploader
-  has_many :songs, dependent: :delete_all
+  has_many :songs
+  has_many :comments
   VALID_EMAIL_REGEX =/\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
   validates :email, presence: true,
             format: {with: VALID_EMAIL_REGEX},

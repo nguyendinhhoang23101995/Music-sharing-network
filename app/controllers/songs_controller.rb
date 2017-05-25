@@ -13,6 +13,7 @@ class SongsController < ApplicationController
 
   def show
     @song = Song.find(params[:id])
+    @comments = @song.comments.page(params[:page]).per(25)
   end
 
   def create

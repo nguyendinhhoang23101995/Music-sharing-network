@@ -68,4 +68,25 @@
 
       .ui.horizontal.icon.divider
         i.circular.red.chat.icon
+
+      #comments
+        .column
+          .ui.comments
+            - if @comments.any?
+              = render @comments
+            - else
+              .ui.center.aligned.basic.segment = "No comment found"
+
+          = paginate @comments
+
+          .ui.horizontal.icon.divider
+            i.circular.green.pencil.icon
+          - if logged_in?
+            = render 'comments/form'
+          - else
+            .ui.center.aligned.basic.segment
+              = link_to :login
+              .ui.animated.fade.blue.button
+                .visible.content = "Login first"
+                .hidden.content = "Login"
   audio id="player" src="#{@song.file}"
