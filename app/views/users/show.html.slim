@@ -12,4 +12,10 @@ canvas#particles
             = image_tag(@user.avatar_url(:large), class: "ui image circular lg  run-popup")
             .center
               h3 = @user.name
-
+            .ui.divider
+              - class_name = "ui left aligned basic segment"
+              .user-status class="#{class_name}"
+                .user-created-at
+                  p Created at: #{time_ago_in_words(@user.created_at)} ago
+                .user-songs-count
+                  p Total Song: #{t('.songs_count', count: @user.songs.count)}
