@@ -99,3 +99,35 @@ body {
 input:-webkit-autofill {
     -webkit-box-shadow: 0 0 0px 1000px rgba(255, 194, 157, 0.5) inset !important;
 }
+
+
+
+
+
+
+
+
+.ui-content {
+  padding-top: 40px;
+  padding-bottom: 46px;
+}
+.logo-image {
+  height: 40px;
+  background-color: #ffffff;
+}
+.header-text-right {
+  float: right;
+  margin-top: 13px;
+}
+.ui-footer {
+  border-top: 1px solid rgba(0,0,0,.15);
+  height: 46px;
+  padding: 1px;
+  width: 100%;
+  align-content: center;
+  text-align: center;
+  z-index: 999;
+  bottom: 0;
+  position: fixed;
+  background-color: #f2f2f2;
+}

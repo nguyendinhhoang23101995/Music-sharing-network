@@ -1,92 +1,76 @@
 - id = @song.id
 - user = @song.user
-- cache @song do
-  .ui.grid
-    .four.wide.column
-    .eight.wide.column
-      .ui.one.column.grid.songs-list id="song-#{@song.id}"
-        .sixteen.wide.column.song-info
+.ui.grid
+  .four.wide.column
+  .eight.wide.column
+    .ui.one.column.grid.songs-list id="song-#{@song.id}"
+      .sixteen.wide.column.song-info
 
-          .song-container.ui.grid
-            .ui.five.wide.column
-              .album-pic
-                .outer-pic.ui.circular.image.dimmer-image
-                  .ui.dimmer
-                    .content
-                      .center
-                        a.playBtn name="#{@song.file}"
-                          i.ui.red.huge.play.icon
-                  img src="#{@song.pic}"
+        .song-container.ui.grid
+          .ui.five.wide.column
+            .album-pic
+              .outer-pic.ui.circular.image.dimmer-image
+                .ui.dimmer
+                  .content
+                    .center
+                      a.playBtn name="#{@song.file}"
+                        i.ui.red.huge.play.icon
+                img src="#{@song.pic}"
 
-            .ui.eleven.wide.column
-              .song-panel
-                h3.header
-                  i.orange.sound.icon
-                  = link_to @song.title.html_safe, @song
-                p
-                  i.user.green.icon
-                  a = @song.artist
-                p.song-toolbar
-                  = link_to user
-                    = image_tag(@song.user.avatar_url(:small), class: "ui mini-avatar avatar image run-popup", data: { content: "#{user.name}", position: "bottom center" } )
+          .ui.eleven.wide.column
+            .song-panel
+              h3.header
+                i.orange.sound.icon
+                = link_to @song.title.html_safe, @song
+              p
+                i.green.icon
+                a = ' Singer: ' + @song.singer
+              p
+                i.user.green.icon
+                a = ' Author: ' + @song.artist
+              p.song-toolbar
+                = link_to user
+                  = image_tag(@song.user.avatar_url(:small), class: "ui mini-avatar avatar image run-popup", data: { content: "#{user.name}", position: "bottom center" } )
+                span.song-tools-divider •
+
+                i.teal.calendar.icon
+                  = ' ' + @song.created_at.strftime("%F")
+                span.song-tools-divider •
+                - if current_user == user
                   span.song-tools-divider •
-        
-                  i.teal.calendar.icon
-                  = @song.created_at.strftime("%F")
+                  = link_to edit_song_path(@song) do
+                    i.green.icon.pencil
                   span.song-tools-divider •
-                  - if current_user == user
-                    span.song-tools-divider •
-                    = link_to edit_song_path(@song) do
-                      i.green.icon.pencil
-                    span.song-tools-divider •
 
-                    = link_to song_path(@song), method: :delete, data: { confirm: "Are you sure" }
-                      i.red.icon.trash                  
-                = render 'share_buttons', song: @song
+                  = link_to song_path(@song), method: :delete, data: { confirm: "Are you sure" }
+                    i.red.icon.trash
+              = render 'share_buttons', song: @song
+          .ui.sixteen.wide.column
+            h2 Description:
+            .song-content
+              = @song.description
+        .song-footer
 
-                div
-                  hr
-                  h2 Sound Information
-                  div id="length" Duration:
-                  div id="source" Source
-                  div id="status" style="color:red;" Status:
-                  hr
-                  h2 Control Buttons
-                  button id="play" Play
-                  button id="pause" Pause
-                  button id="restart" Restart
-                  hr
-                  h2 Current Time
-                  div id="currentTime" 0
-                  hr
-                  br
+    .ui.horizontal.icon.divider
+      i.circular.red.chat.icon
 
-            .ui.sixteen.wide.column
-              .song-content
-                = @song.description
-          .song-footer
-
-      .ui.horizontal.icon.divider
-        i.circular.red.chat.icon
-
-      #comments
-        .column
-          .ui.comments
-            - if @comments.any?
-              = render @comments
-            - else
-              .ui.center.aligned.basic.segment = "No comment found"
-
-          = paginate @comments
-
-          .ui.horizontal.icon.divider
-            i.circular.green.pencil.icon
-          - if logged_in?
-            = render 'comments/form'
+    #comments
+      .column
+        .ui.comments
+          - if @comments.any?
+            = render @comments
           - else
-            .ui.center.aligned.basic.segment
-              = link_to :login
-              .ui.animated.fade.blue.button
-                .visible.content = "Login first"
-                .hidden.content = "Login"
-  audio id="player" src="#{@song.file}"
+            .ui.center.aligned.basic.segment = "No comment found"
+
+        = paginate @comments
+
+        .ui.horizontal.icon.divider
+          i.circular.green.pencil.icon
+        - if logged_in?
+          = render 'comments/form'
+        - else
+          .ui.center.aligned.basic.segment
+            = link_to :login
+            .ui.animated.fade.blue.button
+              .visible.content = "Login first"
+              .hidden.content = "Login"
