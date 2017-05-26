@@ -1,24 +1,18 @@
 <% if @song.errors.empty? %>
-    new_song = "<%= j render 'song', song: @song, index: true %>";
-    $('#songs').prepend(new_song);
-    animated();
-    var audioElement = document.getElementById('player');
-    $('.playBtn').remove('click');
-    $('.playBtn').click(function() {
-    $(audioElement).show();
-    audioElement.setAttribute('src', $(this).attr('name'));
-    audioElement.play();
-    });
+new_song = "<%= j render 'song', song: @song, index: true %>";
+$('#songs').prepend(new_song);
+animated();
 <% else %>
-  $('#song-errors').html("<%= j render 'shared/error_messages', object: @song %>");
-  $('#error_explanation').transition('error');
+$('#flash-errors').html("<%= j render 'shared/flash', object: @song %>");
+$('#error_explanation').transition('error');
+$('.close.red').click();
 <% end %>
 $('.ui.form').removeClass('loading')
 $('.ui.form .button').removeClass('disabled')
 
 function animated() {
-  $('#error_explanation').html("");
-  $('#song-<%= @song.id %>').addClass('animated flipInX');
-  $('#new_song').trigger('reset');
-  $('.close.red').click();
+    $('#error_explanation').html("");
+    $('#song-<%= @song.id %>').addClass('animated flipInX');
+    $('#new_song').trigger('reset');
+    $('.close.red').click();
 }

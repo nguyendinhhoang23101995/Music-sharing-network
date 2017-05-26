@@ -37,7 +37,7 @@
                   = ' ' + @song.created_at.strftime("%F")
                 span.song-tools-divider •
                 span.item id="like-song-#{@song.id}"
-                  - @likeable = Like.likeable(@song)
+                  - @likeable = {likeable_type: 'Song', likeable_id: @song.id}
                   = likeable_likes_tag @likeable
                 span.song-tools-divider
                 - if current_user == user

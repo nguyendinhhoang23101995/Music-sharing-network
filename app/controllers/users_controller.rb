@@ -16,7 +16,6 @@ class UsersController < ApplicationController
   def new
     @user = User.new
     @signup = true
-    render layout: "users_form"
   end
 
   def create
