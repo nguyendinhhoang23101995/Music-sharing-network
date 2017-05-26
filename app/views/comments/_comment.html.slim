@@ -6,6 +6,9 @@
     = link_to user.name, user, class: "author"
     .text.comment-content = comment.content
     .actions
+      span.item id="like-comment-#{comment.id}"
+        - @likeable = Like.likeable(comment)
+        = likeable_likes_tag @likeable
       - if current_user == user
         = link_to [@song, comment], method: :delete, remote: true, data: {confirm: "Are you sure"} do
           i.pink.trash.icon
