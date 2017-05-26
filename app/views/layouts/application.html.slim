@@ -16,11 +16,12 @@ html
           = link_to root_path, id: "logo", class: "item"
             i.music Home
         = render 'layouts/navbar'
+    .flash-message id='flash-errors'
     .ui-content
       = yield
     .ui-footer
       - if logged_in?
-        .ui.green.button.modal-toggle class="modal-en" = "Share a song"
+        .ui.green.button.modal-toggle = "Share a song"
         .ui.modal.song-form
           i.close.red.icon
           .content

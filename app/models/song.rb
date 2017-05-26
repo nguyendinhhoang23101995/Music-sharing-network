@@ -6,4 +6,6 @@ class Song < ActiveRecord::Base
 
   has_many :likes, as: :likeable, foreign_key: "likeable_id"
   validates :user_id, presence: true
+  validates :file, presence: true
+  validates :title, presence: true
 end

@@ -32,6 +32,7 @@ module LikesHelper
 
   def correct_path
     if params[:likeable_type].to_s == "Song"
+
       song_path(params[:likeable_id])
     elsif params[:likeable_type].to_s == "Comment"
       Comment.find(params[:likeable_id]).song

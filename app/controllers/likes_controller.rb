@@ -21,7 +21,7 @@ class LikesController < ApplicationController
 
   private
   def find_likeable
-    @likeable = Like.likeable(Kernel.const_get(params[:likeable_type]).find(params[:likeable_id]))
+    @likeable = {likeable_type: params[:likeable_type], likeable_id: params[:likeable_id]}
   end
 
 end
