@@ -1,6 +1,7 @@
 /**
  * Created by hoang on 22/05/2017.
  */
+var music_player;
 (function($) {
     var musicSharingNetwork;
     musicSharingNetwork = {
@@ -87,40 +88,40 @@
             });
         },
         initPlayer: function() {
-            var audioElement = document.getElementById('player');
-            if (audioElement) {
-                audioElement.addEventListener('ended', function () {
-                    this.play();
-                }, false);
-
-                audioElement.addEventListener("canplay", function () {
-                    $("#length").text("Duration:" + audioElement.duration + " seconds");
-                    $("#source").text("Source:" + audioElement.src);
-                    $("#status").text("Status: Ready to play").css("color", "green");
+            console.log('vao day roi');
+            console.log(music_player);
+            if (!music_player) {
+                console.log('null');
+                var id = "#jquery_jplayer_1";
+                var firstSongElement = $(document.getElementsByClassName('play-music')[0]);
+                var newSong = {
+                    title: firstSongElement.attr('data-title'),
+                    mp3: firstSongElement.attr('data-file')
+                };
+                music_player = $("#jquery_jplayer_1").jPlayer({
+                    ready: function (event) {
+                        $(this).jPlayer("setMedia", newSong);
+                        $(this).jPlayer("play", 1);
+                    },
+                    pause: function() {
+                        $(this).jPlayer("clearMedia");
+                    },
+                    supplied: "mp3",
+                    preload: "none",
+                    volume: 1,
+                    wmode: "window",
+                    useStateClassSkin: true,
+                    autoBlur: false,
+                    keyEnabled: true
                 });
-
-                audioElement.addEventListener("timeupdate", function () {
-                    $("#currentTime").text("Current second:" + audioElement.currentTime);
-                });
-
-                $('#play').click(function () {
-                    audioElement.play();
-                    $("#status").text("Status: Playing");
-                });
-
-                $('#pause').click(function () {
-                    audioElement.pause();
-                    $("#status").text("Status: Paused");
-                });
-
-                $('#restart').click(function () {
-                    audioElement.currentTime = 0;
-                });
-                $('.playBtn').remove('click');
-                $('.playBtn').click(function() {
-                    $(audioElement).show();
-                    audioElement.setAttribute('src', $(this).attr('name'));
-                    audioElement.play();
+                $('.play-music').remove('click');
+                $('.play-music').click(function() {
+                    console.log('clicked');
+                    music_player.jPlayer("setMedia", {
+                        title: $(this).attr('data-title'),
+                        mp3: $(this).attr('data-file')
+                    });
+                    music_player.jPlayer("play", 1);
                 });
             }
         },
