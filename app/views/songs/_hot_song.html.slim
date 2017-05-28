@@ -1,0 +1,22 @@
+.aa-video-list
+  a.aa-wishlist-video_image
+    img src="#{hot_song.pic}" /
+    .aa-wishlist-video_content
+      .aa-soundTitle
+        button.play.play-music type="button" data-file="#{hot_song.file}" data-title="#{hot_song.title}"
+        .info-user
+          p.aa-name-usser
+            a href="#"  #{hot_song.artist}
+          p.title-comment
+            i.orange.sound.icon
+              = link_to hot_song.title.html_safe, hot_song
+      .social-link
+        .com-count
+          - author = song_url(hot_song) + "#comments"
+          = link_to author do
+            i.green.comment.icon
+            = hot_song.comments.size
+        .like-count
+          i.red.heart.icon
+            = hot_song.likes.size
+

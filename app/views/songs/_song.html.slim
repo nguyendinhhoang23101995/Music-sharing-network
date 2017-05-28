@@ -1,35 +1,32 @@
-section.ui.two.column.grid.segment.stacked.songs-list id="song-#{song.id}"
-  .five.wide.column
-    - unless song
-      .ui.left.red.corner.label
-        i.heart.icon
-    .album-pic
-      .outer-pic.ui.circular.image
-        img src="#{song.pic}"
-      a class="ui corner label playBtn" name="#{song.file}"
-        i.play.icon
-  .eleven.wide.column.song-info
-    - if current_user == song.user
-      .operate
-        = link_to edit_song_path(song), class: "edit-song" do
-          i.green.pencil.icon
-        = link_to song_path(song), data: {method: "delete", confirm: "Are you sure", remote: true} do
-          i.red.trash.icon
-    .ui.right
-      h3.header
-        i.orange.sound.icon
-        = link_to song.title.html_safe, song
-      .singer
-        | Singer:
-        a = song.artist
-      .song-content
-        = song.description
-    .song-footer
-      .com-count
-        - author = song_url(song) + "#comments"
-        = link_to author do
-          i.green.comment.icon
-          = song.comments.size
-      .musician
-        = image_tag(song.user.avatar_url(:thumb), class: "ui avatar image")
-        = link_to song.user.name, song.user
+.aa-video-list
+  a.aa-wishlist-video_image
+    img src="#{song.pic}" /
+    .aa-wishlist-video_content
+      .aa-soundTitle
+        button.play.play-music type="button" data-file="#{song.file}" data-title="#{song.title}"
+        .info-user
+          p.aa-name-usser
+            a href="#"  #{song.artist}
+          p.title-comment
+            i.orange.sound.icon
+              = link_to song.title.html_safe, song
+        - if current_user == song.user
+          = link_to edit_song_path(song), class: "edit-song" do
+            i.green.pencil.icon
+          = link_to song_path(song), data: {method: "delete", confirm: "Are you sure", remote: true} do
+            i.red.trash.icon
+      .social-link
+        .musician
+          = image_tag(song.user.avatar_url(:thumb), class: "ui avatar image")
+          = link_to song.user.name, song.user
+        .com-count
+          - author = song_url(song) + "#comments"
+          = link_to author do
+            i.green.comment.icon
+            = song.comments.size
+        .like-count
+          i.red.heart.icon
+            = song.likes.size
+
+
+
