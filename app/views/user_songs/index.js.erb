@@ -1,0 +1,5 @@
+<% if @songs.empty? %>
+$('#songs').html('No Song Found')
+<% else %>
+$('#songs').html("<%= j render 'songs/play_list', songs: @songs %>")
+<% end %>

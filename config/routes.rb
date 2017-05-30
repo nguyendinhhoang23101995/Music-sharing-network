@@ -14,4 +14,8 @@ Rails.application.routes.draw do
   end
 
   resource :likes, only: [:create, :destroy]
+
+  get 'collect', to: 'songs#collect', as: :collect
+  resources :user_songs
+  resources :user_likes
 end

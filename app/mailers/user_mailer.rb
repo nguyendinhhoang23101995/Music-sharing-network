@@ -4,14 +4,14 @@ class UserMailer < ActionMailer::Base
 
   def activation_needed_email(user)
     @user = user
-    @url  = "http://127.0.0.1:3000/actives/#{user.activation_token}/update"
+    @url  = "#{root_url}actives/#{user.activation_token}"
     mail(:to => user.email,
          :subject => "Welcome to the Music Share")
   end
 
   def activation_success_email(user)
     @user = user
-    @url  = "http://127.0.0.1:3000/login"
+    @url  = "#{root_url}login"
     mail(:to => user.email,
          :subject => "Your account is confirmed")
   end
