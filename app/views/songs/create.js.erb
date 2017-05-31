@@ -9,6 +9,14 @@ $('.close.red').click();
 <% end %>
 $('.ui.form').removeClass('loading')
 $('.ui.form .button').removeClass('disabled')
+$('.play-music').remove('click');
+$('.play-music').click(function() {
+    music_player.jPlayer("setMedia", {
+        title: $(this).attr('data-title'),
+        mp3: $(this).attr('data-file')
+    });
+    music_player.jPlayer("play", 1);
+});
 
 function animated() {
     $('#error_explanation').html("");

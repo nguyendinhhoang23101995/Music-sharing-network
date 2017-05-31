@@ -10,13 +10,8 @@
           .ui.five.wide.column
             .album-pic
               .outer-pic.ui.circular.image.dimmer-image
-                .ui.dimmer
-                  .content
-                    .center
-                      a.playBtn name="#{@song.file}"
-                        i.ui.red.huge.play.icon
                 img src="#{@song.pic}"
-
+              button.play.play-music type="button" data-file="#{@song.file}" data-title="#{@song.title}"
           .ui.eleven.wide.column
             .song-panel
               h3.header

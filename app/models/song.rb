@@ -4,7 +4,7 @@ class Song < ActiveRecord::Base
   belongs_to :user
   has_many :comments
 
-  has_many :likes, as: :likeable, foreign_key: "likeable_id"
+  has_many :likes, as: :likeable, foreign_key: "likeable_id", dependent: :destroy
   validates :user_id, presence: true
   validates :file, presence: true
   validates :title, presence: true
