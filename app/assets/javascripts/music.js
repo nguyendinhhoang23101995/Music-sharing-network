@@ -2,6 +2,8 @@
  * Created by hoang on 22/05/2017.
  */
 var music_player;
+var current_song = null;
+var currentTime = null;
 (function($) {
     var musicSharingNetwork;
     musicSharingNetwork = {
@@ -88,42 +90,48 @@ var music_player;
             });
         },
         initPlayer: function() {
-            console.log('vao day roi');
-            console.log(music_player);
-            if (!music_player) {
-                console.log('null');
-                var id = "#jquery_jplayer_1";
+            if (!current_song) {
                 var firstSongElement = $(document.getElementsByClassName('play-music')[0]);
-                var newSong = {
+                current_song = {
                     title: firstSongElement.attr('data-title'),
                     mp3: firstSongElement.attr('data-file')
                 };
-                music_player = $("#jquery_jplayer_1").jPlayer({
-                    ready: function (event) {
-                        $(this).jPlayer("setMedia", newSong);
-                        $(this).jPlayer("play", 1);
-                    },
-                    pause: function() {
-                        $(this).jPlayer("clearMedia");
-                    },
-                    supplied: "mp3",
-                    preload: "none",
-                    volume: 1,
-                    wmode: "window",
-                    useStateClassSkin: true,
-                    autoBlur: false,
-                    keyEnabled: true
-                });
-                $('.play-music').remove('click');
-                $('.play-music').click(function() {
-                    console.log('clicked');
-                    music_player.jPlayer("setMedia", {
-                        title: $(this).attr('data-title'),
-                        mp3: $(this).attr('data-file')
-                    });
-                    music_player.jPlayer("play", 1);
-                });
             }
+            music_player = $("#jquery_jplayer_1").jPlayer({
+                ready: function (event) {
+                    $(this).jPlayer("setMedia", current_song);
+                    if (currentTime == null) {
+                        $(this).jPlayer("play", 1);
+                    } else {
+                        $(this).jPlayer("play", currentTime);
+                    }
+
+                },
+                pause: function() {
+                    $(this).jPlayer("pause");
+                },
+                supplied: "mp3",
+                preload: "none",
+                volume: 1,
+                wmode: "window",
+                useStateClassSkin: true,
+                autoBlur: false,
+                keyEnabled: true
+            });
+            setTimeout(function(){
+                music_player.bind($.jPlayer.event.timeupdate, function(event) {
+                    currentTime = Math.floor(event.jPlayer.status.currentTime);
+                });
+            }, 2000);
+
+            $('.play-music').remove('click');
+            $('.play-music').click(function() {
+                music_player.jPlayer("setMedia", {
+                    title: $(this).attr('data-title'),
+                    mp3: $(this).attr('data-file')
+                });
+                music_player.jPlayer("play", 1);
+            });
         },
         initLoadingForm: function() {
             return $('input[name=commit]').click(function() {

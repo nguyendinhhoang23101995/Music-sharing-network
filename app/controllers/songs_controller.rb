@@ -13,6 +13,7 @@ class SongsController < ApplicationController
   end
 
   def show
+    @hot_songs = Song.hot_songs
     @song = Song.find(params[:id])
     @comments = @song.comments.page(params[:page]).per(25)
   end
