@@ -1,11 +1,15 @@
-- if @songs
+- unless @songs.blank?
   #songs data-image="#{asset_path("loading.gif")}" class='aa-wishlist-video'
     .title-left
       span.number.fa.fa-heart New Songs
     - for song in @songs
-      = render 'song', song: song, index: index
+      = render 'songs/song', song: song
   #pagination data-loaded="All songs are loaded"
     = paginate @songs
+- else
+  #songs data-image="#{asset_path("loading.gif")}" class='aa-wishlist-video'
+    .title-left
+      span.number.fa.fa-heart No Song Found
 .left-video
   .title-left
     span.number.fa.fa-heart Hot Songs
