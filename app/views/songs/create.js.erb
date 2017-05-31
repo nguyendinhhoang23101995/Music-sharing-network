@@ -1,14 +1,14 @@
 <% if @song.errors.empty? %>
-new_song = "<%= j render 'song', song: @song, index: true %>";
+new_song = "<%= j render 'song', song: @song %>";
 $('#songs').append(new_song);
+$('#flash-errors').html("<%= j render 'shared/flash', object: @song %>");
 animated();
 <% else %>
 $('#flash-errors').html("<%= j render 'shared/flash', object: @song %>");
 $('#error_explanation').transition('error');
 $('.close.red').click();
 <% end %>
-$('.ui.form').removeClass('loading')
-$('.ui.form .button').removeClass('disabled')
+$('.ui.form').removeClass('loading');
 $('.play-music').remove('click');
 $('.play-music').click(function() {
     music_player.jPlayer("setMedia", {
@@ -21,6 +21,5 @@ $('.play-music').click(function() {
 function animated() {
     $('#error_explanation').html("");
     $('#song-<%= @song.id %>').addClass('animated flipInX');
-    $('#new_song').trigger('reset');
     $('.close.red').click();
 }
