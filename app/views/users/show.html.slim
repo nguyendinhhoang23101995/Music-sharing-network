@@ -3,15 +3,15 @@ canvas#particles
 .ui.grid
   .three.wide.column
   .ten.wide.column
-    #user-show.ui.grid
-      .one.wide.column
+    #user-show
       .fourteen.wide.column
-        .ui.grid
-          .one.wide.column
+        .one.wide.column
           .ui.five.wide.column.center.aligned.info-column
             = image_tag(@user.avatar_url(:large), class: "ui image circular lg  run-popup")
             .center
-              h3 = @user.name
+              h1 = @user.name
+            .center
+              = link_to "Click here to edit your account", edit_user_path(current_user), class: "item"
             .ui.divider
               - class_name = "ui left aligned basic segment"
               .user-status class="#{class_name}"
@@ -19,3 +19,11 @@ canvas#particles
                   p Created at: #{time_ago_in_words(@user.created_at)} ago
                 .user-songs-count
                   p Total Song: #{t('.songs_count', count: @user.songs.count)}
+                .user-comments-count
+                  p Total comment: #{t('.songs_count', count: @user.comments.count)}
+          .nine.wide.column.content-column
+            .ui.secondary.large.menu data-loading="Loading"
+              = link_to "My Songs", user_songs_url, remote: true, class: "active item"
+              = link_to "My Favorite Songs", user_likes_url, remote: true, class: "item"
+            #songs.status-panel
+              = render 'songs/play_list', songs: @songs

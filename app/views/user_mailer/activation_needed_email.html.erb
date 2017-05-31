@@ -5,5 +5,5 @@
   <p class="content spacer" align="center" style="word-break: break-word; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-smooth: always; -webkit-font-smoothing: antialiased; color: #666; font-size: 15px; font-weight: 300; line-height: 20px; padding-bottom: 14px;">
     You are successfully registered,
     Your username is: <%= @user.name %>. <br>
-    Please follow<%= link_to "this link", @url, { style: "color: #08c; text-decoration: none;" } %><%= t('mailer.activation.complete') %>. <br>
+    Please follow <%= link_to "this link", @url, { style: "color: #08c; text-decoration: none;" } %> to active your account. <br>
   </p>

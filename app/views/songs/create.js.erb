@@ -1,6 +1,6 @@
 <% if @song.errors.empty? %>
 new_song = "<%= j render 'song', song: @song, index: true %>";
-$('#songs').prepend(new_song);
+$('#songs').append(new_song);
 animated();
 <% else %>
 $('#flash-errors').html("<%= j render 'shared/flash', object: @song %>");
