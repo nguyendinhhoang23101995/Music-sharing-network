@@ -10,4 +10,12 @@ class Song < ActiveRecord::Base
   validates :title, presence: true
 
   scope :hot_songs, -> {joins(:likes).group('songs.id').order('count(likes.id) desc').limit(10)}
+
+  def self.search(search)
+    if search
+      where(["title like ?", "%#{search}%"])
+    else
+      where(["title like ?", ''])
+    end
+  end
 end

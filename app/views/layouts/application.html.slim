@@ -15,6 +15,10 @@ html
         .item
           = link_to root_path, id: "logo", class: "item"
             i.music Home
+        .item.search-form
+          = form_tag search_path, method: :post
+            = text_field_tag :title
+            = submit_tag "Search"
         = render 'layouts/navbar'
     .flash-message id='flash-errors'
     .ui-content

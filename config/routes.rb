@@ -18,4 +18,5 @@ Rails.application.routes.draw do
   get 'collect', to: 'songs#collect', as: :collect
   resources :user_songs
   resources :user_likes
+  post 'search', to: 'search#index', as: :search
 end
